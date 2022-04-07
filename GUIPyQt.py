@@ -7,12 +7,12 @@ from PyQt5.QtWidgets import *
 def window():
     app = QApplication(sys.argv)
     w=QWidget()
-    w.setGeometry(900,900,900,200) #(HORIZONTAL place, Vertical Place, width, height)
-    w.setWindowTitle("kkk eae men")
+    w.setGeometry(200,200,900,200) #(HORIZONTAL place, Vertical Place, width, height)
+    w.setWindowTitle("Nice.")
 
     b = QLabel(w)
     b.setText("Hello World!")
-    b.move(20,20)
+    b.move(10,0)
 
     w.show ()
     sys.exit(app.exec_())
