@@ -1,8 +1,8 @@
+from operator import truediv
 import sys
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-
 
 
 class mainwindow(QWidget): #mainwindow will INHERIT everything from QWidget
@@ -48,6 +48,7 @@ class mainwindow(QWidget): #mainwindow will INHERIT everything from QWidget
         self.sbmt.setText("Submit")
         self.sbmt.move(50,100)
         self.sbmt.setVisible(False)
+        
 
         self.back = QPushButton(self)
         self.back.setText("Back")
@@ -55,10 +56,13 @@ class mainwindow(QWidget): #mainwindow will INHERIT everything from QWidget
         self.back.setVisible(False)
 
 
-        self.btn2.clicked.connect(self.NoUser)
-        self.btn1.clicked.connect(self.OldUser)
+        self.btn2.clicked.connect(self.User)
+        self.btn1.clicked.connect(self.User)
+        self.back.clicked.connect(self.restart)
+        self.sbmt.clicked.connect(self.getname)
 
-    def NoUser(self):
+
+    def User(self):
         self.usr.setVisible(True)
         self.label.setVisible(False)
         self.label2.setVisible(False)
@@ -68,31 +72,19 @@ class mainwindow(QWidget): #mainwindow will INHERIT everything from QWidget
         self.sbmt.setVisible(True)
         self.back.setVisible(True)
 
-    def OldUser(self):
-        self.usr.setVisible(True)
-        self.label.setVisible(False)
-        self.label2.setVisible(False)
-        self.btn1.setVisible(False)
-        self.btn2.setVisible(False)
-        self.label3.setVisible(True)
-        self.sbmt.setVisible(True)
-        self.back.setVisible(True)
-
-        """
-        user = input("Please enter your name: ")
-        userUP = user.upper()
-        f = open(userUP + ".txt", "a")
-        f.close()
-        f = open(userUP + ".txt", "r")
-        while f.readline() != "": #this loop ensure another file with the same name does not exist
-                f.close()
-                print("This name is already in use.")
-                loopback = True
-                break
-        f.close()
-        if loopback == False:
-            print("Welcome, " + user.capitalize() + ".")
-        """        
+    def restart(self):
+        self.usr.setVisible(False)
+        self.label.setVisible(True)
+        self.label2.setVisible(True)
+        self.btn1.setVisible(True)
+        self.btn2.setVisible(True)
+        self.label3.setVisible(False)
+        self.sbmt.setVisible(False)
+        self.back.setVisible(False)
+    
+    def getname(self):
+        name = self.usr.text()
+        self.label3.setText(name)
 
 def main():
     app = QApplication(sys.argv)
